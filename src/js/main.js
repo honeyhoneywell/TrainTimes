@@ -22,8 +22,12 @@ var departureStationLookup = () => {
   input = input.toLowerCase();
   var suggestions = stations.filter(x => x.match(input));
   if (suggestions.length < 6) {
-    suggestions.map(x => document.getElementById('departureSuggestions').innerHTML += '<div class="suggestion">' + x + '</div><br>');
+    suggestions.map(x => document.getElementById('departureSuggestions').innerHTML += '<div class="suggestion" name='+x+'>' + x + '</div><br>');
   }
+  // var classname = document.getElementsByClassName("suggestion");
+  // for (var i = 0; i < classname.length; i++) {
+  //   classname[i].addEventListener('click', updateDeparture(), false);
+  // }
 }
 
 var destinationStationLookup = () => {
@@ -32,6 +36,28 @@ var destinationStationLookup = () => {
   input = input.toLowerCase();
   var suggestions = stations.filter(x => x.match(input));
   if (suggestions.length < 6) {
-    suggestions.map(x => document.getElementById('destinationSuggestions').innerHTML += '<div class="suggestion">' + x + '</div><br>');
+    suggestions.map(x => document.getElementById('destinationSuggestions').innerHTML += '<div class="suggestion" name='+x+'>' + x + '</div><br>');
   }
+  // var classname = document.getElementsByClassName("suggestion");
+  // for (var i = 0; i < classname.length; i++) {
+  //   classname[i].addEventListener('click', updateDestination(), false);
+  // }
+  $('.suggestion').on('click', function() {
+    alert(this);
+  });
 }
+
+// function updateDestination() {
+//   console.log(this);
+//   var attribute = this.getAttribute("name");
+//   document.getElementById('destination').value = attribute;
+//   document.getElementById('destinationSuggestions').innerHTML = '';
+// }
+//
+// function updateDeparture() {
+//   console.log(this);
+//   var attribute = this.getAttribute("name");
+//   alert(attribute);
+//   document.getElementById('departure').value = attribute;
+//   document.getElementById('departureSuggestions').innerHTML = '';
+// }
