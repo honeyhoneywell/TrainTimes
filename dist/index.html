@@ -14,11 +14,22 @@
         <h1>Train Times</h1>
       </header>
       <div id="search">
-        <input type="text" placeholder="From"></input>
+        <!-- <label>Choose a browser from this list: -->
+        <!-- <input list="departure" name="departure" placeholder="From"/></label>
+        <datalist id="departure">
+        </datalist>
+        <br> -->
+        <!-- <label>Choose a browser from this list: -->
+        <!-- <input list="destination" name="destination" placeholder="To"/></label>
+        <datalist id="destination">
+        </datalist> -->
+        <input id="departure" onKeyup="departureStationLookup()" type="text" placeholder="From" autofocus></input>
+        <div id="departureSuggestions"></div>
         <br>
-        <input type="text" placeholder="To"></input>
+        <input id="destination" onKeyup="destinationStationLookup()" type="text" placeholder="To"></input>
+        <div id="destinationSuggestions"></div>
         <br>
-        <select name="time" id="time">
+        <select name="time" id="time" style="display: none">
         	<option value="5:00">5:00</option>
         	<option value="5:15">5:15</option>
         	<option value="5:30">5:30</option>

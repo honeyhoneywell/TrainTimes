@@ -11,6 +11,25 @@ header {
   font-family: 'Actor', sans-serif;
 }
 
+#departureSuggestions, #destinationSuggestions {
+  font-family: 'Actor', sans-serif;
+  padding: 0px;
+  margin: 0px;
+}
+
+.suggestion {
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.suggestion:hover {
+  background: rgba(211, 211, 211, 0.2);
+  cursor: pointer;
+}
+
 #search {
   width: 100%;
   border-bottom: solid 1px black;
@@ -19,7 +38,7 @@ header {
   padding-bottom: 50px;
 }
 
-input[type="text"], select {
+input[type="text"], select, input {
   border: solid 1px black;
   height: 20px;
   width: 300px;

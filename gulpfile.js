@@ -5,6 +5,8 @@ var browserSync = require('browser-sync').create();
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
+var babel = require('gulp-babel');
+var es2015 = require('babel-preset-es2015');
 
 gulp.task('default', ['copy-html', 'copy-images', 'styles', 'scripts'], function() {
 	gulp.watch('src/sass/**/*.scss', ['styles']);
@@ -26,6 +28,7 @@ gulp.task('dist', [
 gulp.task('scripts', function() {
 	gulp.src('src/js/**/*.js')
 		.pipe(concat('all.js'))
+    .pipe(babel({ presets: ['es2015'] }))
 		.pipe(uglify().on('error', gutil.log))
 		.pipe(gulp.dest('dist/js'));
 });
