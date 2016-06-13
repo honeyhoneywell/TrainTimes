@@ -7,7 +7,7 @@ header {
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 5%;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px lightgrey;
   font-family: 'Actor', sans-serif;
 }
 
@@ -34,9 +34,10 @@ header {
 }
 
 #train-times {
-  border-bottom: solid 1px black;
-  width: 95%;
+  border-bottom: solid 1px lightgrey;
+  width: 90%;
   padding-left: 5%;
+  padding-right: 5%;
   font-family: 'Arial', sans-serif;
   font-weight: 200;
   font-size: 1.25em;
@@ -44,9 +45,31 @@ header {
 }
 
 .train {
-  width: 95%;
-  padding-left: 5%;
+  width: 100%;
+  // padding-left: 5%;
   padding-top: 20px;
+  padding-bottom: 20px;
+  display: inline-block;
+}
+
+.table-row {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.table-item {
+  display: inline-block;
+  width: 33.333333333333333333333333%;
+  font-weight: lighter;
+  font-size: 0.9em;
+}
+
+.headers {
+  font-size: 1.15em;
+  font-family: 'Actor', sans-serif;
+  color: grey;
+  border-bottom: 1px solid lightgrey;
   padding-bottom: 20px;
 }
 

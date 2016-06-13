@@ -8,7 +8,7 @@ fetch("https://huxley.apphb.com/crs").then(function(response) {
   data.map(x => stations.push(x.stationName));
   stations = stations.map(x => x.toLowerCase());
 }).catch(function(error) {
-  console.log('INITIAL REQUEST ------ There has been a problem with your fetch operation: ' + error.message);
+
   document.getElementById('departure').disabled = true;
   document.getElementById('destination').disabled = true;
 
@@ -24,11 +24,12 @@ var getTrains = (from, to) => {
   fetch(url).then(function(response){
     return response.json();
   }).then(function(data){
-    console.log(data);
+
   });
 }
 
 var departureStationLookup = () => {
+  document.getElementById('error-message').innerHTML = "";
   document.getElementById('departureSuggestions').innerHTML = '';
   var input = document.getElementById('departure').value;
   input = input.toLowerCase();
@@ -63,6 +64,7 @@ var departureStationLookup = () => {
 }
 
 var destinationStationLookup = () => {
+  document.getElementById('error-message').innerHTML = "";
   document.getElementById('destinationSuggestions').innerHTML = '';
   var input = document.getElementById('destination').value;
   input = input.toLowerCase();
@@ -107,10 +109,17 @@ var fetchTrainTimes = () => {
     fetch(url).then(function(response){
       return response.json();
     }).then(function(data){
+        for (var item in data.trainServices) {
+          if (data.trainServices[item].platform == null) {
+            data.trainServices[item].platform = '';
+          }
+        }
         if (data.trainServices == null) {
-
+          document.getElementById('error-message').innerHTML = "No trains between these stations";
         } else {
-          data.trainServices.map(x => document.getElementById('train-times').innerHTML += "<div class='train'>" + x.std + "</div>");
+          document.getElementById('error-message').innerHTML = "";
+          document.getElementById('train-times').innerHTML = "<div class='train'><div class='table-row headers'><div class='table-item' >Departure</div><div class='table-item' >Operator</div><div class='table-item' >Platform</div></div></div>";
+          data.trainServices.map(x => document.getElementById('train-times').innerHTML += "<div class='train'><div class='table-row'><div class='table-item'>" + x.std + "</div>" + "<div class='table-item'>" + x.operator + "</div><div class='table-item'>" + x.platform + "</div></div></div>");
         }
     }).catch(function(error) {
       console.log('There has been a problem with your fetch operation: ' + error.message);
