@@ -3,7 +3,7 @@
 }
 
 header {
-  width: 100%;
+  width: 95%;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 5%;
@@ -17,7 +17,7 @@ header {
   margin: 0px;
 }
 
-.suggestion {
+.suggested-departure-station, .suggested-destination-station {
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -25,14 +25,45 @@ header {
   text-align: center;
 }
 
-.suggestion:hover {
+#error-message {
+  font-family: 'Actor', sans-serif;
+  color: red;
+  opacity: 0.8;
+  font-weight: 200;
+  text-transform: capitalize;
+}
+
+#train-times {
+  border-bottom: solid 1px black;
+  width: 95%;
+  padding-left: 5%;
+  font-family: 'Arial', sans-serif;
+  font-weight: 200;
+  font-size: 1.25em;
+  padding-bottom: 30px;
+}
+
+.train {
+  width: 95%;
+  padding-left: 5%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#offline {
+  color: red;
+  font-family: 'Actor', sans-serif;
+  opacity: 0.8;
+  font-weight: 200;
+}
+
+.suggested-departure-station:hover, .suggested-destination-station:hover {
   background: rgba(211, 211, 211, 0.2);
   cursor: pointer;
 }
 
 #search {
-  width: 100%;
-  border-bottom: solid 1px black;
+  width: 95%;
   padding-left: 5%;
   padding-top: 50px;
   padding-bottom: 50px;
