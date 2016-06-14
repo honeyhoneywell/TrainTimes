@@ -8,13 +8,10 @@ fetch("https://huxley.apphb.com/crs").then(function(response) {
   data.map(x => stations.push(x.stationName));
   stations = stations.map(x => x.toLowerCase());
 }).catch(function(error) {
-
   document.getElementById('departure').disabled = true;
   document.getElementById('destination').disabled = true;
-
   document.getElementById('departure').style.opacity = 0.3;
   document.getElementById('destination').style.opacity = 0.3;
-
   document.getElementById('title').innerHTML = "<span id='offline'>No Network Connection</span> - UK Train Times";
 
 });
@@ -24,7 +21,6 @@ var getTrains = (from, to) => {
   fetch(url).then(function(response){
     return response.json();
   }).then(function(data){
-
   });
 }
 
@@ -118,11 +114,26 @@ var fetchTrainTimes = () => {
           document.getElementById('error-message').innerHTML = "No trains between these stations";
         } else {
           document.getElementById('error-message').innerHTML = "";
-          document.getElementById('train-times').innerHTML = "<div class='train'><div class='table-row headers'><div class='table-item' >Departure</div><div class='table-item' >Operator</div><div class='table-item' >Platform</div></div></div>";
-          data.trainServices.map(x => document.getElementById('train-times').innerHTML += "<div class='train'><div class='table-row'><div class='table-item'>" + x.std + "</div>" + "<div class='table-item'>" + x.operator + "</div><div class='table-item'>" + x.platform + "</div></div></div>");
+          document.getElementById('train-times').innerHTML = "<div class='train'><div class='table-row headers'><div class='table-item' >Departure</div><div class='table-item' >Arrival</div><div class='table-item' >Operator</div><div class='table-item' >Platform</div></div></div>";
+          data.trainServices.map(x => document.getElementById('train-times').innerHTML += "<div class='train'><div class='table-row'><div class='table-item'>" + x.std + "</div><div class='table-item' id='" + x.serviceID + "'>" + getArrivalTime(x.serviceID) + "</div><div class='table-item'>" + x.operator + "</div><div class='table-item'>" + x.platform + "</div></div></div>");
         }
     }).catch(function(error) {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
   }
+}
+
+var getArrivalTime = (serviceID) => {
+  var url = "https://huxley.apphb.com/service/" + serviceID + "?accessToken=DA1C7740-9DA0-11E4-80E6-A920340000B1";
+  var st = "";
+  var promise = fetch(url).then(function(response){
+    return response.json();
+  }).then(function(data){
+    var destination = data.subsequentCallingPoints[0].callingPoint.filter(x => x.locationName.toLowerCase() == document.getElementById('destination').value);
+    st = destination[0].st;
+    document.getElementById(serviceID).innerHTML = st;
+  }).catch(function(error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+  });
+  return st;
 }
