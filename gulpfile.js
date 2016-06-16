@@ -8,7 +8,7 @@ var gutil = require('gulp-util');
 var babel = require('gulp-babel');
 var es2015 = require('babel-preset-es2015');
 
-gulp.task('default', ['copy-html', 'copy-images', 'styles', 'scripts'], function() {
+gulp.task('default', ['copy-html', 'copy-images', 'styles', 'scripts', 'json', 'sw'], function() {
 	gulp.watch('src/sass/**/*.scss', ['styles']);
 	gulp.watch('src/index.html', ['copy-html']);
 	gulp.watch('./dist/index.html').on('change', browserSync.reload);
@@ -22,7 +22,9 @@ gulp.task('dist', [
 	'copy-html',
 	'copy-images',
 	'styles',
-	'scripts'
+	'scripts',
+	'json',
+	'sw'
 ]);
 
 gulp.task('scripts', function() {
@@ -31,6 +33,16 @@ gulp.task('scripts', function() {
     .pipe(babel({ presets: ['es2015'] }))
 		.pipe(uglify().on('error', gutil.log))
 		.pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('json', function() {
+	gulp.src('src/*.json')
+		.pipe(gulp.dest('dist/'));
+});
+
+gulp.task('sw', function() {
+	gulp.src('src/sw.js')
+		.pipe(gulp.dest('dist/'));
 });
 
 gulp.task('copy-html', function() {
