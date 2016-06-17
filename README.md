@@ -1,5 +1,8 @@
 # TrainTimes
 
-npm install
+## Getting Started
 
-gulp - launches browser-sync
+- `git clone` this repository
+- `npm install`
+- `gulp`
+
