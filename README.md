@@ -1,5 +1,3 @@
-# TrainTimes
-
 ## Getting Started
 
 - `git clone` this repository
